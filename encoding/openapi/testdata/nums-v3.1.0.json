@@ -1,0 +1,37 @@
+{
+   "openapi": "3.1.0",
+   "info": {
+      "title": "test",
+      "version": "v1"
+   },
+   "paths": {},
+   "components": {
+      "schemas": {
+         "exMax": {
+            "type": "number",
+            "exclusiveMaximum": 6
+         },
+         "exMin": {
+            "type": "number",
+            "exclusiveMinimum": 5
+         },
+         "mul": {
+            "type": "number",
+            "multipleOf": 5
+         },
+         "neq": {
+            "type": "number",
+            "not": {
+               "allOff": [
+                  {
+                     "minimum": 4
+                  },
+                  {
+                     "maximum": 4
+                  }
+               ]
+            }
+         }
+      }
+   }
+}

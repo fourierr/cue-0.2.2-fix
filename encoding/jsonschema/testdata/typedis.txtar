@@ -1,0 +1,55 @@
+-- type.json --
+{
+  "type": "object",
+  "title": "Main schema",
+
+  "properties": {
+    "intOrString1": {
+      "type": [ "string", "integer" ]
+    },
+    "intOrString2": {
+      "oneOf": [
+          { "type": "integer" },
+          { "type": "string" }
+      ]
+    },
+    "intOrString3": {
+      "anyOf": [
+          { "type": "integer" },
+          { "type": "string" }
+      ]
+    },
+
+    "disjunction": {
+      "oneOf": [
+        {
+            "anyOf": [
+                { "type": "integer" },
+                { "type": "string" }
+            ]
+        },
+        {
+            "type": "integer",
+            "minimum": 3
+        }
+      ]
+    },
+    "empty": {
+        "allOf": [
+            { "type": "object" },
+            { "type": "string" }
+        ]
+    }
+  }
+}
+-- out.err --
+constraint not allowed because type string is excluded:
+    type.json:39:23
+-- out.cue --
+// Main schema
+intOrString1?: int | string
+intOrString2?: int | string
+intOrString3?: string | int
+disjunction?:  string | int | int & >=3
+empty?:        _|_
+...

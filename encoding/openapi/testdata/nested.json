@@ -1,0 +1,32 @@
+{
+   "openapi": "3.0.0",
+   "info": {
+      "title": "File comment.",
+      "version": "no version"
+   },
+   "paths": {},
+   "components": {
+      "schemas": {
+         "Struct": {
+            "type": "object",
+            "properties": {
+               "a": {
+                  "$ref": "#/components/schemas/Struct.T"
+               },
+               "c": {
+                  "type": "array",
+                  "items": {
+                     "$ref": "#/components/schemas/Struct.T"
+                  }
+               },
+               "b": {
+                  "$ref": "#/components/schemas/Struct.T"
+               }
+            }
+         },
+         "Struct.T": {
+            "type": "integer"
+         }
+      }
+   }
+}

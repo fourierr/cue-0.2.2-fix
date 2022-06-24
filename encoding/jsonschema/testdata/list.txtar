@@ -1,0 +1,45 @@
+-- list.yaml --
+type: object
+
+properties:
+  foo:
+    type: array
+    items:
+      type: string
+
+  tuple:
+    type: array
+    items:
+      - type: string
+      - type: integer
+      - const: 2
+
+  has:
+    type: array
+    contains:
+      const: 3
+
+  size:
+    type: array
+    minItems: 3
+    maxItems: 9
+    uniqueItems: true
+
+  additional:
+    type: array
+    items:
+      - type: integer
+      - type: integer
+    additionalItems:
+      type: string
+
+additionalProperties: false
+
+-- out.cue --
+import "list"
+
+foo?: [...string]
+tuple?: [string, int, 2]
+has?:  list.Contains(3)
+size?: list.UniqueItems() & list.MaxItems(9) & [_, _, _, ...]
+additional?: [int, int, ...string]
